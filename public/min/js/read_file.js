@@ -1,0 +1,1 @@
+"use strict";function readFile(a){var t=null;return $.ajax({async:!1,global:!1,url:a,dataType:"text",success:function(a){t=a}}),t}

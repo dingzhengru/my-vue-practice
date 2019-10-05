@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue Practice</title>
+
+    <link rel="stylesheet" href="bower_components/components-font-awesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="bower_components/components-font-awesome/css/brands.min.css">
+    <link rel="stylesheet" href="bower_components/components-font-awesome/css/solid.min.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        @import url("public/min/css/main.css")
+    </style>
+</head>
+<body>
+    <section id="app" class="wrapper">
+        <header>
+            <nav class="navbar navbar-expand-md navbar-light bg-info">
+                <router-link class="navbar-brand" to="/">Brand</router-link>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <router-link class="nav-link" to="/">Home</router-link>
+                        </li>
+                        <li class="nav-item">
+                            <router-link class="nav-link" to="/product">Product</router-link>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-align-justify fa-2x"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <main class="container">
+            <!-- <h1>My First Vue Project</h1> -->
+            <router-view></router-view>
+
+            <!-- <div class="row"> -->
+                <!-- <div class="col">col</div> -->
+                <!-- <div class="col">col</div> -->
+            <!-- </div> -->
+            <!-- <div class="row" > -->
+                <!-- mr-auto = margin-right: auto!important 可以置左 -->
+                <!-- ml-auto = margin-left: auto!important 可以置右-->
+                <!-- <div class="col-auto">.col-auto .mr-auto</div> -->
+                <!-- <div class="col-auto">.col-auto .mr-auto</div> -->
+                <!-- <div class="col-auto ml-auto">.col-auto</div> -->
+            <!-- </div> -->
+        </main>
+
+        <footer>
+        </footer>
+    </section>
+    
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/popper.js/dist/umd/popper.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/vue/dist/vue.min.js"></script>
+    <script src="bower_components/vue-router/dist/vue-router.min.js"></script>
+
+    <script src="public/min/js/read_file.js"></script>
+    <script src="public/js/router.js"></script>
+    <script src="public/js/main.js"></script>
+
+    <script>
+        // console.log(SearchTemplate)
+    </script>
+</body>
+</html>
