@@ -1,0 +1,1 @@
+"use strict";function initDatabase(e,i,s){e.collection(i).set(s),console.log("init")}var defaultProject=firebase.initializeApp(firebaseConfig),db=firebase.firestore();console.log(123),initDatabase(db,"test",{ss:"sss"});

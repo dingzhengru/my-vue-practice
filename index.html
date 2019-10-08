@@ -28,6 +28,9 @@
                         <li class="nav-item">
                             <router-link class="nav-link" to="/product">Product</router-link>
                         </li>
+                        <li class="nav-item">
+                            <router-link class="nav-link" to="/order">Order</router-link>
+                        </li>
                     </ul>
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item dropdown">
@@ -46,7 +49,7 @@
             </nav>
         </header>
         <main class="container">
-            <!-- <h1>My First Vue Project</h1> -->
+
             <router-view></router-view>
 
             <!-- <div class="row"> -->
@@ -65,19 +68,33 @@
         <footer>
         </footer>
     </section>
-    
+
+    <script src="bower_components/lodash/dist/lodash.min.js"></script>
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/popper.js/dist/umd/popper.min.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- Vue -->
     <script src="bower_components/vue/dist/vue.min.js"></script>
     <script src="bower_components/vue-router/dist/vue-router.min.js"></script>
 
+    <!-- Firebase -->
+    <script src="bower_components/firebase/firebase-app.js"></script>
+    <script src="bower_components/firebase/firebase-auth.js"></script>
+    <script src="bower_components/firebase/firebase-firestore.js"></script>
+
+    <!-- Public -->
+    <script src="firebase-config.js"></script>
+    <script src="database-init.js"></script>
+    <script src="public/js/firebase-test.js"></script>
+
     <script src="public/min/js/read_file.js"></script>
-    <script src="public/js/router.js"></script>
+
+    <script type="module" src="public/js/router.js"></script>
     <script src="public/js/main.js"></script>
 
     <script>
-        // console.log(SearchTemplate)
+
     </script>
 </body>
 </html>

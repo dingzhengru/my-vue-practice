@@ -1,8 +1,8 @@
-var app = new Vue({
-    el: '#app',
-    router: router,
-    data: {}
-})
+// var app = new Vue({
+//     el: '#app',
+//     router: router,
+//     data: {}
+// })
 
 // var headerApp = new Vue({
 //     el: 'header',
