@@ -1,73 +1,24 @@
-import { Product } from "./product.js"
-import { Order } from "./order.js"
- 
+import { Product } from './product.js'
+import { Order } from './order.js'
+import { ProductFirebase } from './firebase-product.js'
+
 const HomeTemplate = readFile('./public/html/home.html');
 const ProductTemplate = readFile('./public/html/product.html');
 const OrderTemplate = readFile('./public/html/order.html');
-
+const FirebaseProductTemplate = readFile('./public/html/firebase-product.html');
 
 // set Template
 const Home = { template: HomeTemplate };
 Product.template = ProductTemplate;
 Order.template = OrderTemplate;
-
-// const Product = { 
-//     template: ProductTemplate ,
-//     data: function() {
-//         return {
-//             searchText: '',
-//             product: { name: '', price: null }, 
-//             isEdit: false,
-//             products: [
-//                 {
-//                     id: 0,
-//                     name: 'Cookie',
-//                     price: 100
-//                 },
-//                 {
-//                     id: 1,
-//                     name: 'Tea',
-//                     price: 200
-//                 },
-//                 {
-//                     id: 2,
-//                     name: 'BaseBall',
-//                     price: 500
-//                 }
-//             ]
-//         }
-//     },
-//     computed: {
-//         productsFilter: function () {
-//             return this.searchProductsByAll(this.searchText);
-//         }
-//     },
-//     methods:{
-//         searchProductsByAll: function(searchText) {
-//             return this.products.filter(function(p) {
-//                 for(let x in p) {
-//                     if(String(p[x]).toLowerCase().includes(searchText.toLowerCase())) return p;
-//                 }
-//             })
-//         },
-//         addProduct: function(product) {
-//             product.id = this.products.length; 
-//             this.products.push(product);
-//         },
-//         removeProduct: function(product) {
-//             this.products.splice(this.products.indexOf(product), 1);
-//         },
-//         editProduct: function(product) {
-//             this.products[this.products.indexOf(product)] = product;
-//         }
-//     }
-// };
+ProductFirebase.template = FirebaseProductTemplate;
 
 // 重定向 redirect: '/b', redirect: { name: 'foo' } 也可用 alias: '/b'
 const routes = [
     { path: '/', component: Home },
     { path: '/product', component: Product },
     { path: '/order', component: Order },
+    { path: '/firebase-product', component: ProductFirebase },
     // { path: '/user/:id', component: User,
     //     // /user/:id/profile, /user/:id/posts
     //     children: [

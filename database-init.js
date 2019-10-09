@@ -59,10 +59,9 @@ var products = [
     },
     {
         id: '02',
-        name: 'Tea',
+        name: 'Candy',
         price: 300 
     },
 ]
 
-
-initCollection(db, 'products', products);
+// initCollection(db, 'products', products);
