@@ -11,10 +11,9 @@ sudo apt-get install python-software-properties
 curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 sudo apt-get install nodejs
 
-
 cd my-vue-practice
 
-rm node_module 
+rm -r node_modules
 npm install
 npm rebuild node-sass
 npm install -g gulp
