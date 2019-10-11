@@ -9,8 +9,7 @@ var ProductFirebase = {
             sort: 'id',
             isAsc: true,
             currentPage: 1,
-            pageSize: 2,
-            // totalPage: 2
+            pageSize: 3,
         }
     },
     beforeCreate: function() { },
