@@ -5,6 +5,9 @@ Preview here:
 
 https://4c8c5a776c404c68b4c65954152bd591.vfs.cloud9.us-east-2.amazonaws.com
 
+not serve anytime(because in Cloud9 free project )
+不一定會隨時在線(Cloud9免費方案閒置一段時間會進入休眠)
+
 ## How to serve
 ```Bash
 sudo apt-get install python-software-properties
