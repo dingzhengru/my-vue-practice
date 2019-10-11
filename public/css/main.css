@@ -49,6 +49,11 @@ footer{
     margin-bottom: 0px;
 }
 
+#prodcut-table th:hover {
+    cursor: pointer;
+    background-color: gray;
+}
+
 /* Order */
 #order{
 
@@ -56,4 +61,10 @@ footer{
 
 #order-table {
     margin-top: 20px;
+}
+
+/* Firebase Page */
+#product-pagination{}
+#product-pagination a {
+    cursor: pointer;
 }
