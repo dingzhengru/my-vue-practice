@@ -18,6 +18,8 @@ sudo apt-get install python-software-properties
 curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 sudo apt-get install nodejs
 ```
+### Use Gulp to serve
+
 ```Bash
 cd my-vue-practice
 
