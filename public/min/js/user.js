@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.User=void 0;var User={template:"",data:function(){return{}}};exports.User=User;

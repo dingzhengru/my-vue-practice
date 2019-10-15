@@ -1,4 +1,4 @@
-var ProductFirebase = { 
+var FirebaseProduct = { 
     template: '' ,
     data: function() {
         return {
@@ -16,18 +16,16 @@ var ProductFirebase = {
     created: function() {
         console.log('created'); 
         this.getProducts();
-
-        // this.products =  this.products.sort(function (a, b) {
-        //     return a.name > b.name ? 1 : -1;
-        // });
-
     },
     computed: {
         productsFilter: function () {
             // 從第幾個開始列 ex:假設一頁列出兩個(第一頁從第0個, 第二頁從第2個)
+            // page return
             let startAt = this.pageSize * (this.currentPage - 1);
             let endAt = startAt + this.pageSize;
             return this.searchProductsByAll(this.searchText).slice(startAt, endAt);
+            
+            // no page return
             // return this.searchProductsByAll(this.searchText);
         }
     },
@@ -45,10 +43,15 @@ var ProductFirebase = {
             })
         },
         addProduct: function(product) {
-            product.id = String(this.products.length);
-            this.products.push(_.cloneDeep(product));
-            db.collection('products').add(product);
-            // this.getProducts();
+            // 直接從資料庫找最大的ID，+1之後當新資料的ID
+            db.collection('products').orderBy('id', 'desc').limit(1).get().then((shotsnap) => {
+                shotsnap.forEach((doc) => {
+                    product.id = String(Number(doc.data().id) + 1);
+                    product.price = Number(product.price);
+                    this.products.push(_.cloneDeep(product));
+                    db.collection('products').add(product);
+                })
+            })
         },
         removeProduct: function(product) {
             // 用where跟product.id來篩選
@@ -102,7 +105,6 @@ var ProductFirebase = {
         },
         totalPage: function() {
             // ceil 無條件進位
-            console.log(Math.ceil(this.searchProductsByAll(this.searchText).length / this.pageSize));
             return Math.ceil(this.searchProductsByAll(this.searchText).length / this.pageSize);
         }
     }
@@ -110,4 +112,4 @@ var ProductFirebase = {
 };
 
 
-export { ProductFirebase }
+export { FirebaseProduct }

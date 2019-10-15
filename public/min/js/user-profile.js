@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports.UserProfile=void 0;var UserProfile={template:"",data:function(){return{}},beforeCreate:function(){},created:function(){console.log("created")},computed:{},methods:{}};exports.UserProfile=UserProfile;

@@ -54,6 +54,10 @@ footer{
     background-color: gray;
 }
 
+.products-tr:hover {
+    background-color: #F2F2F2;
+}
+
 /* Order */
 #order{
 
@@ -63,8 +67,67 @@ footer{
     margin-top: 20px;
 }
 
-/* Firebase Page */
-#product-pagination{}
-#product-pagination a {
+/* Page */
+.pagination-nav{}
+.pagination-nav a {
     cursor: pointer;
+}
+
+/* Firebase Order */
+#order-container{
+
+}
+#order-container #order-header{
+    font-weight: bold;
+    border-bottom:  2px solid gray;
+}
+
+#order-container .order-rows{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-bottom:  1px dotted gray;
+    cursor: pointer;
+}
+#order-container .order-rows:hover{
+    background-color: #F2F2F2;
+}
+
+#order-container .order-rows .detail-rows{
+    background-color: #F2F2F2;
+    height: 100px;
+}
+
+/* 動畫命名 */
+/* from to 或用%數 25% 50% 75% 100% */
+@keyframes slide-show{
+    from { 
+        height: 0px;
+        opacity: 0; 
+    }
+    to {
+        height: 100px;
+        opacity: 1;
+    }
+}
+
+@keyframes slide-hide{
+    from { 
+        height: 100px;
+        opacity: 1; 
+    }
+    to { 
+        height: 0px;
+        opacity: 0; 
+    }
+}
+
+
+/* 動畫 */
+
+.slide-enter-active {
+  animation: slide-show 0.5s;
+}
+
+.slide-leave-active {
+  animation: slide-hide 0.5s;
 }

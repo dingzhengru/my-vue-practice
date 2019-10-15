@@ -1,0 +1,123 @@
+<div id="order">
+    <h1>Order</h1>
+    <br>
+    <div class="form-group">
+        <input type="text" v-model="searchText" class="form-control" id="searchInput" placeholder="search...">
+    </div>
+
+    <!-- <input type="text" v-model="order.user.id" placeholder="UserID"> -->
+    <!-- <label v-for="(p,index) in products" style="margin-right: 5px;">
+        <input type="checkbox" :true-value="p" v-model="order.products[p.id]" > {{ p.name }}
+    </label>
+    <button @click="addOrder(order)" class="btn btn-success">addOrder</button>
+    <button @click="isEdit = !isEdit" class="btn btn-warning ml-auto">Edit</button> -->
+    
+    <div class="container" id="order-container">
+        <div id="order-header" class="row">
+            <div class="col-1">#</div>
+            <div class="col-1">User</div>
+            <div class="col-2">Created</div>
+            <div class="col">Products(ID)</div>
+            <div class="col-2">Sum</div>
+        </div>
+        <div  class="row order-rows" v-for="(o, index) in ordersFilter" @click="toggleDetail(index)" data-toggle="collapse" data-target=".order-detail">
+            <div class="col-1">{{ o.id }}</div>
+            <div class="col-1">{{ o.userid }}</div>
+            <!-- use dayjs -->
+            <div class="col-2">{{ dayjs(o.created.toMillis()).format('YYYY/MM/DD hh:mm:ss') }}</div>
+            <div class="col-6">
+                <span v-for="(p, i) in getOrderProducts(o.productIDs)">
+                    {{ p.id }}
+                    <span v-if="i != o.productIDs.length - 1">, </span>
+                </span>
+            </div>
+            <div class="col-2">{{ getOrderSum(o.productIDs) }}</div>
+            <transition  
+                enter-active-class="slide-enter-active" 
+                leave-active-class="slide-leave-active">
+                <div class="col-12 detail-rows" v-if="isShowDetail(index)">
+                    <div class="row" v-for="(p, i) in getOrderProducts(o.productIDs)">
+                        <div class="col-1"> #{{ p.id }} </div>
+                        <div class="col"> {{ p.name }}</div>
+                        <div class="col-4"> {{ p.price }} </div>
+                    </div>
+                </div>
+            </transition>
+        </div>
+    </div>
+
+    <!-- Page -->
+    <nav id="order-pagination" class="pagination-nav">
+        <!-- currentPage <= 1 ? 0 : currentPage-- 前者為true會執行的 後者為false會執行的 -->
+        <ul class="pagination">
+            <li class="page-item" 
+                v-bind:class="{ 'disabled': currentPage <= 1 }"
+                @click="currentPage <= 1 ? 0 : currentPage--">
+                <a class="page-link">Previous</a>
+            </li>
+            <li v-for="(p, index) in totalPage()" @click="currentPage = index + 1" class="page-item">
+                <a class="page-link btn" v-bind:class="{'disabled': currentPage == index + 1}" >{{ index + 1 }}</a>
+                <!-- <a v-else class="page-link">{{ index + 1 }}</a> -->
+            </li>
+            <li class="page-item" 
+                v-bind:class="{ 'disabled': currentPage >= totalPage() }"
+                @click="currentPage >= totalPage() ? 0 : currentPage++">
+                <a class="page-link">Next</a>
+            </li>
+        </ul>
+    </nav>
+
+<!--     <table v-if="!isEdit" id="order-table" class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">User</th>
+                <th scope="col">Products(ID)</th>
+                <th scope="col">Sum</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="o in ordersFilter">
+                <th>{{ o.id }}</th>
+                <td>{{ o.userid }}</td>
+                <td>
+                    <span v-for="(p,index) in getOrderProducts(o.productIDs)">
+                        {{ p.id }}
+                        <span v-if="index != o.productIDs.length - 1">, </span>
+                    </span>
+                </td>
+                <td>
+                    {{ getOrderSum(o.productIDs) }}
+                </td>
+                <td>
+                    <button @click="removeOrder(order)" class="btn btn-danger">removeOrder</button>
+                </td>
+            </tr>
+        </tbody>
+    </table> -->
+    <!-- Edit mode -->
+<!--     <table v-if="isEdit" id="order-table" class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">User</th>
+                <th scope="col">Products</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="o in ordersFilter">
+                <th><input class="form-control" v-model="o.id" disabled></th>
+                <td><input class="form-control" v-model="o.user.id"></td>
+                <td>
+                    <label v-for="(p,index) in o.products" style="margin-right: 5px;">
+                        <input type="checkbox" v-model="p" @change="changeProduct(o.products, p, index)"> {{ p.name }}
+                    </label>
+                </td>
+                <td>
+                    <button @click="removeOrder(o)" class="btn btn-danger">removeOrder</button>
+                </td>
+            </tr>
+            </tr>
+        </tbody>
+    </table> -->
+</div>

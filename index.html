@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <title>Vue Practice</title>
 
-    <link rel="stylesheet" href="bower_components/components-font-awesome/css/fontawesome.min.css">
-    <link rel="stylesheet" href="bower_components/components-font-awesome/css/brands.min.css">
-    <link rel="stylesheet" href="bower_components/components-font-awesome/css/solid.min.css">
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/fontawesome.min.css">
+    <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/solid.min.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
         @import url("public/min/css/main.css")
     </style>
@@ -34,6 +33,12 @@
                         <li class="nav-item">
                             <router-link class="nav-link" to="/firebase-product">Product(F)</router-link>
                         </li>
+                        <li class="nav-item">
+                            <router-link class="nav-link" to="/firebase-order">Order(F)</router-link>
+                        </li>
+                        <li class="nav-item">
+                            <router-link class="nav-link" to="/user/1">User</router-link>
+                        </li>
                     </ul>
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item dropdown">
@@ -41,10 +46,10 @@
                                 <i class="fas fa-align-justify fa-2x"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">A</a>
+                                <a class="dropdown-item" href="#">B</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Something else here</a>
+                                <a class="dropdown-item" href="#">Something</a>
                             </div>
                         </li>
                     </ul>
@@ -72,20 +77,33 @@
         </footer>
     </section>
 
-    <script src="bower_components/lodash/dist/lodash.min.js"></script>
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="bower_components/popper.js/dist/umd/popper.min.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- lodash 提供很多基本的工具函式，但都更好更快 -->
+    <!-- 目前有用到 _.cloneDeep 複製一份一樣的(但修改並不會影響原本的) -->
+    <!-- <script src="node_modules/lodash/dist/lodash.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.15/lodash.min.js"></script>
+    <!-- jquery -->
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+
+    <!-- font-awesome -->
+    <!-- <script src="node_modules/@fortawesome/fontawesome-free/js/fontawesome.min.js"></script> -->
+    <!-- <script src="node_modules/@fortawesome/fontawesome-free/js/solid.min.js"></script> -->
+
+    <!-- bootstrap -->
+    <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- day.js -->
+    <script src="node_modules/dayjs/dayjs.min.js"></script>
 
     <!-- Vue -->
-    <!-- <script src="bower_components/vue/dist/vue.min.js"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
-    <script src="bower_components/vue-router/dist/vue-router.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script> -->
+    <script src="node_modules/vue/dist/vue.min.js"></script>
+    <script src="node_modules/vue-router/dist/vue-router.min.js"></script>
 
     <!-- Firebase -->
-    <script src="bower_components/firebase/firebase-app.js"></script>
-    <script src="bower_components/firebase/firebase-auth.js"></script>
-    <script src="bower_components/firebase/firebase-firestore.js"></script>
+    <script src="node_modules/firebase/firebase-app.js"></script>
+    <script src="node_modules/firebase/firebase-auth.js"></script>
+    <script src="node_modules/firebase/firebase-firestore.js"></script>
 
     <!-- Public -->
     <script src="firebase-config.js"></script>

@@ -48,20 +48,105 @@ var db = firebase.firestore();
 
 var products = [
     {
-        id: '00',
+        id: '0',
         name: 'Cookie',
         price: 100 
     },
     {
-        id: '01',
+        id: '1',
         name: 'Tea',
         price: 200 
     },
     {
-        id: '02',
+        id: '2',
         name: 'Candy',
-        price: 300 
+        price: 500 
+    },
+    {
+        id: '3',
+        name: 'product_3',
+        price: 700 
+    },
+    {
+        id: '4',
+        name: 'product_4',
+        price: 100 
+    },
+    {
+        id: '5',
+        name: 'product_5',
+        price: 250 
+    },
+    {
+        id: '6',
+        name: 'product_6',
+        price: 450 
+    },
+    {
+        id: '7',
+        name: 'product_7',
+        price: 220 
+    },
+    {
+        id: '8',
+        name: 'product_8',
+        price: 430 
     },
 ]
 
+var orders = [
+    {
+        id: '1',
+        userid: '1',
+        status: '',
+        created: firebase.firestore.Timestamp.fromDate(new Date(2017, 5, 8, 1, 35, 30)),
+        productIDs:[
+            '0',
+            '2',
+            '1'
+        ],
+        info: ''
+    },
+    {
+        id: '2',
+        userid: '1',
+        status: '',
+        created: firebase.firestore.Timestamp.fromDate(new Date(2018, 11, 18, 1, 35, 30)),
+        productIDs:[
+            '8',
+            '7',
+            '6'
+        ],
+        info: ''
+    },
+    {
+
+        id: '3',
+        userid: '1',
+        status: '',
+        created: firebase.firestore.Timestamp.fromDate(new Date(2019, 1, 1, 10, 33, 30)),
+        productIDs:[
+            '4',
+            '3'
+        ],
+        info: ''
+    },
+]
+
+var users = [
+    {
+        id:'0',
+        name: 'username01'
+    },
+    {
+        id:'1',
+        name: 'username02'
+    }
+]
+
+// console.log(dayjs(orders[0].date.toMillis()).format('YYYY/MM/DD hh:mm:ss'));
+
+
 // initCollection(db, 'products', products);
+// initCollection(db, 'orders', orders);
+// initCollection(db, 'users', users);
