@@ -10,9 +10,9 @@ not serve anytime(because in Cloud9 free project )
 
 ## How to serve
 
-## Install Yarn: https://www.yarnpkg.com/en/docs/install#debian-stable
+### Install Yarn: https://www.yarnpkg.com/en/docs/install#debian-stable
 
-## Install Nodejs: https://github.com/nodesource/distributions
+### Install Nodejs: https://github.com/nodesource/distributions
 ```Bash
 sudo apt-get install python-software-properties
 curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
@@ -23,7 +23,7 @@ cd my-vue-practice
 
 rm -r node_modules
 yarn install
-yarn global add gulp-cli or (npm install -g gulp-cli)
+yarn global add gulp-cli (or npm install -g gulp-cli)
 ```
 
 ```Bash gulp watch```
