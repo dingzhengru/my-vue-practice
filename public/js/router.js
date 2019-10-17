@@ -5,6 +5,9 @@ import { FirebaseOrder } from './firebase-order.js'
 import { User } from './user.js'
 import { UserHome } from './user-home.js'
 import { UserProfile } from './user-profile.js'
+import { SignUp } from './sign-up.js'
+import { SignIn } from './sign-in.js'
+import { SignOut } from './sign-out.js'
 
 const HomeTemplate = readFile('./public/html/home.html');
 const ProductTemplate = readFile('./public/html/product.html');
@@ -14,6 +17,8 @@ const FirebaseOrderTemplate = readFile('./public/html/firebase-order.html');
 const UserTemplate = readFile('./public/html/user.html');
 const UserHomeTemplate = readFile('./public/html/user-home.html');
 const UserProfileTemplate = readFile('./public/html/user-profile.html');
+const SignUpTemplate = readFile('./public/html/sign-up.html');
+const SignInTemplate = readFile('./public/html/sign-in.html');
 // set Template
 const Home = { template: HomeTemplate };
 Product.template = ProductTemplate;
@@ -23,6 +28,8 @@ FirebaseOrder.template = FirebaseOrderTemplate;
 User.template = UserTemplate;
 UserHome.template = UserHomeTemplate;
 UserProfile.template = UserProfileTemplate;
+SignUp.template = SignUpTemplate;
+SignIn.template = SignInTemplate;
 // 重定向 redirect: '/b', redirect: { name: 'foo' } 也可用 alias: '/b'
 const routes = [
     { path: '/', component: Home },
@@ -30,6 +37,9 @@ const routes = [
     { path: '/order', component: Order },
     { path: '/firebase-product', component: FirebaseProduct },
     { path: '/firebase-order', component: FirebaseOrder },
+    { path: '/sign-up', component: SignUp },
+    { path: '/sign-in', component: SignIn },
+    { path: '/sign-out', component: SignOut },
     { path: '/user/:id', component: User,
         // /user/:id/profile, /user/:id/posts
         children: [

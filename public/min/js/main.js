@@ -1,1 +1,1 @@
-"use strict";
+"use strict";var test=new Vue({el:"#test",methods:{googleLogin:function(){firebase.auth().signInWithPopup(providerGoogle).then(function(o){var e=o.credential.accessToken,n=o.user;console.log("token",e),console.log("user",n),firebase.auth().signOut().then(function(){console.log("signout")}).catch(function(o){console.log("signout error",o)})})}}});
