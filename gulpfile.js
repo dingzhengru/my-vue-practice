@@ -99,7 +99,7 @@ function scss_compress() {
 
 function serve(done){
     return pipeline(
-        gulp.src('/'),
+        gulp.src('./'),
         webserver({
             livereload: false,
             directoryListing: false,
