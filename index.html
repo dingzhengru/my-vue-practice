@@ -77,9 +77,6 @@
         <footer>
         </footer>
     </section>
-    <!-- <div id="test">
-        <button class="btn btn-danger" @click="googleLogin()" >google</button>
-    </div> -->
 
     <!-- lodash 提供很多基本的工具函式，但都更好更快 -->
     <!-- 目前有用到 _.cloneDeep 複製一份一樣的(但修改並不會影響原本的) -->
@@ -103,6 +100,7 @@
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script> -->
     <script src="node_modules/vue/dist/vue.min.js"></script>
     <script src="node_modules/vue-router/dist/vue-router.min.js"></script>
+    <script src="node_modules/vuex/dist/vuex.min.js"></script>
 
     <!-- Firebase -->
     <script src="node_modules/firebase/firebase-app.js"></script>
@@ -112,15 +110,13 @@
     <!-- Public -->
     <script src="firebase-config.js"></script>
     <script src="firebase-init.js"></script>
-    <script src="firebase-auth.js">></script>
+    <script src="firebase-auth.js"></script>
 
+    <!-- to read html file -->
     <script src="public/min/js/read_file.js"></script>
 
-    <script type="module" src="public/js/router.js"></script>
-    <script src="public/min/js/main.js"></script>
+    <script type="module" src="public/router.js"></script>
+    <script type="module" src="public/main.js"></script>
 
-    <script>
-        
-    </script>
 </body>
 </html>

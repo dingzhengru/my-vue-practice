@@ -10,8 +10,6 @@ firebase.auth().onAuthStateChanged(function(user) {
     }
 });
 
-
-
 var providerGoogle = new firebase.auth.GoogleAuthProvider();
 
 // Optional(scope, languageCode, CustomParameters)

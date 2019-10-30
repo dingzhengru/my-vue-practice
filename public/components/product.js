@@ -24,6 +24,10 @@ var Product = {
             ]
         }
     },
+    created: function() {
+        console.log(123);
+        console.log(this.$store.state.msg)
+    },
     computed: {
         productsFilter: function () {
             return this.searchProductsByAll(this.searchText);

@@ -1,13 +1,13 @@
-import { Product } from './product.js'
-import { Order } from './order.js'
-import { FirebaseProduct } from './firebase-product.js'
-import { FirebaseOrder } from './firebase-order.js'
-import { User } from './user.js'
-import { UserHome } from './user-home.js'
-import { UserProfile } from './user-profile.js'
-import { SignUp } from './sign-up.js'
-import { SignIn } from './sign-in.js'
-import { SignOut } from './sign-out.js'
+import { Product } from './components/product.js'
+import { Order } from './components/order.js'
+import { FirebaseProduct } from './components/firebase-product.js'
+import { FirebaseOrder } from './components/firebase-order.js'
+import { User } from './components/user.js'
+import { UserHome } from './components/user-home.js'
+import { UserProfile } from './components/user-profile.js'
+import { SignUp } from './components/sign-up.js'
+import { SignIn } from './components/sign-in.js'
+import { SignOut } from './components/sign-out.js'
 
 const HomeTemplate = readFile('./public/html/home.html');
 const ProductTemplate = readFile('./public/html/product.html');
@@ -60,6 +60,28 @@ const routes = [
     }
 ];
 
+
+const store = new Vuex.Store({
+    state: {
+        count: 0, 
+        todos: [
+            { id: 1, text: 'todos1', done: true },
+            { id: 2, text: 'todos2', done: false },
+            { id: 3, text: 'todos3', done: true }
+        ],
+        msg: 'defaultMsg'
+    },
+    getters: {
+        
+    },
+    mutations: {
+        
+    },
+    actions: {
+        
+    },
+    plugins:[]
+})
 // 要在後端直接換網址可以用 router.push()
 
 // literal string path
@@ -75,4 +97,9 @@ const routes = [
 // router.push({ path: 'register', query: { plan: 'private' } })
 
 const router = new VueRouter({ routes });
-const app = new Vue({ router }).$mount('#app');
+// const app = new Vue({ 
+//     router,
+//     store
+// }).$mount('#app');
+
+export { router }
