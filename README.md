@@ -19,7 +19,7 @@ sudo apt-get install nodejs
 ```
 ### Use Gulp to serve
 
-```Bash
+```
 cd my-vue-practice
 
 rm -r node_modules
@@ -27,9 +27,9 @@ yarn install
 yarn global add gulp-cli (or npm install -g gulp-cli)
 ```
 
-```Bash gulp watch```
+```gulp watch```
 
 or
 
-```Bash gulp serve```
+```gulp serve```
 
