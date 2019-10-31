@@ -4,12 +4,14 @@ var SignOut = {
         return {}
     },
     beforeCreate: function() {
-        firebase.auth().signOut().then(function() {
+        this.$store.dispatch('user/signOutAction')
+        .then(() => {
             console.log('sign out');
-            window.location.replace(window.location.origin);
-        }).catch(function(error) {
-            console.log('sign out error:', error.message);
-        });
+            this.$router.push('/');
+        })
+        .catch((error) => {
+            console.log(error);
+        })
     },
     created: function() {
 

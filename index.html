@@ -36,9 +36,9 @@
                         <li class="nav-item">
                             <router-link class="nav-link" to="/firebase-order">Order(F)</router-link>
                         </li>
-                        <!-- <li class="nav-item">
+                        <li class="nav-item">
                             <router-link class="nav-link" to="/user/1">User</router-link>
-                        </li> -->
+                        </li>
                     </ul>
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item dropdown">
@@ -47,18 +47,18 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <router-link 
-                                    v-if="!window.sessionStorage.getItem('isLogin')"
+                                    
                                     class="dropdown-item" 
                                     to="/sign-up">
                                     Sign Up</router-link>
                                 <router-link 
-                                v-if="!window.sessionStorage.getItem('isLogin')"
+                                
                                 class="dropdown-item" 
                                 to="/sign-in">
                                 Sign In</router-link>
                                 <!-- <div class="dropdown-divider"></div> -->
                                 <router-link 
-                                v-if="window.sessionStorage.getItem('isLogin')"
+                                
                                 class="dropdown-item" 
                                 to="/sign-out">
                                 Sign Out</router-link>

@@ -16,6 +16,7 @@ var FirebaseProduct = {
     created: function() {
         console.log('created'); 
         this.getProducts();
+        // this.$store.dispatch('fireProduct/getDataAction');
     },
     computed: {
         productsFilter: function () {
