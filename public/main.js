@@ -1,5 +1,5 @@
 import { router } from './router.js'
-import { store } from './store.js'
+import store from './store.js'
 
 
 
@@ -12,7 +12,15 @@ const app = new Vue({
         .then((user) => {
             console.log('user:', user);
         }).catch((error) => {
-            console.log(error)
+            console.log(error);
         })
     },
+    computed: {
+        user () {
+            return this.$store.state.user
+        },
+        isLogin() {
+            return !_.isEmpty(this.$store.state.user.data);
+        },
+    }
 }).$mount('#app');

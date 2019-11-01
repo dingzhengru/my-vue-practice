@@ -10,8 +10,12 @@ const storeUser = {
     },
     mutations: {
         setData(state, payload) {
-            console.log('setData', payload);
+            console.log('user: setData', payload);
             state.data = payload;
+        },
+        clearData(state, payload) {
+            console.log('user: clearData');
+            state.data = null;
         },
         setStatus(state, payload) {
             state.status = payload;
@@ -29,6 +33,7 @@ const storeUser = {
                         commit('setData', user);
                         resolve(user);
                     } else {
+                        commit('clearData');
                         reject('User is not logged in.');
                     }
                 });

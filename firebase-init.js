@@ -48,47 +48,47 @@ var db = firebase.firestore();
 
 var products = [
     {
-        id: '0',
+        id: 0,
         name: 'Cookie',
         price: 100 
     },
     {
-        id: '1',
+        id: 1,
         name: 'Tea',
         price: 200 
     },
     {
-        id: '2',
+        id: 2,
         name: 'Candy',
         price: 500 
     },
     {
-        id: '3',
+        id: 3,
         name: 'product_3',
         price: 700 
     },
     {
-        id: '4',
+        id: 4,
         name: 'product_4',
         price: 100 
     },
     {
-        id: '5',
+        id: 5,
         name: 'product_5',
         price: 250 
     },
     {
-        id: '6',
+        id: 6,
         name: 'product_6',
         price: 450 
     },
     {
-        id: '7',
+        id: 7,
         name: 'product_7',
         price: 220 
     },
     {
-        id: '8',
+        id: 8,
         name: 'product_8',
         price: 430 
     },
@@ -96,8 +96,8 @@ var products = [
 
 var orders = [
     {
-        id: '1',
-        userid: '1',
+        id: 1,
+        userid: 1,
         status: '',
         created: firebase.firestore.Timestamp.fromDate(new Date(2017, 5, 8, 1, 35, 30)),
         productIDs:[
@@ -108,8 +108,8 @@ var orders = [
         info: ''
     },
     {
-        id: '2',
-        userid: '1',
+        id: 2,
+        userid: 1,
         status: '',
         created: firebase.firestore.Timestamp.fromDate(new Date(2018, 11, 18, 1, 35, 30)),
         productIDs:[
@@ -121,8 +121,8 @@ var orders = [
     },
     {
 
-        id: '3',
-        userid: '1',
+        id: 3,
+        userid: 1,
         status: '',
         created: firebase.firestore.Timestamp.fromDate(new Date(2019, 1, 1, 10, 33, 30)),
         productIDs:[
@@ -135,11 +135,11 @@ var orders = [
 
 var users = [
     {
-        id:'0',
+        id: '0',
         name: 'username01'
     },
     {
-        id:'1',
+        id: '1',
         name: 'username02'
     }
 ]

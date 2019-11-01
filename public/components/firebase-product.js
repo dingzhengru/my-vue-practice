@@ -3,22 +3,26 @@ var FirebaseProduct = {
     data: function() {
         return {
             searchText: '',
-            product: { name: '', price: null }, 
             isEdit: false,
-            products: [],
-            sort: 'id',
-            isAsc: true,
             currentPage: 1,
             pageSize: 3,
+            product: { name: '', price: null }, 
+            // products: [],
+            // sort: 'id',
+            // isAsc: true,
         }
     },
-    beforeCreate: function() { },
-    created: function() {
-        console.log('created'); 
-        this.getProducts();
-        // this.$store.dispatch('fireProduct/getDataAction');
+    beforeCreate: function() { 
+        // get data
+        this.$store.dispatch('product/getDataAction')
+        .then((data) => {  })
+        .catch((error) => console.log('getData error:', error));
     },
+    created: function() {},
     computed: {
+        products: function() {
+            return this.$store.state.product.data;
+        },
         productsFilter: function () {
             // 從第幾個開始列 ex:假設一頁列出兩個(第一頁從第0個, 第二頁從第2個)
             // page return
@@ -31,78 +35,39 @@ var FirebaseProduct = {
         }
     },
     methods:{
-        getProducts: function() {
-            db.collection('products').orderBy('id').get().then((shotsnap) => {
-                this.products = shotsnap.docs.map(doc => doc.data());
-            })
-        },
         searchProductsByAll: function(searchText) {
-            return this.products.filter(function(p) {
+            let products = this.$store.state.product.data || [];
+            return products.filter(function(p) {
                 for(let x in p) {
                     if(String(p[x]).toLowerCase().includes(searchText.toLowerCase())) return p;
                 }
             })
         },
         addProduct: function(product) {
-            // 直接從資料庫找最大的ID，+1之後當新資料的ID
-            db.collection('products').orderBy('id', 'desc').limit(1).get().then((shotsnap) => {
-                shotsnap.forEach((doc) => {
-                    product.id = String(Number(doc.data().id) + 1);
-                    product.price = Number(product.price);
-                    this.products.push(_.cloneDeep(product));
-                    db.collection('products').add(product);
-                })
-            })
+            this.$store.dispatch('product/addDataAction', product)
+            .then((data) => {  })
+            .catch((error) => console.log('addProduct error:', error))
         },
         removeProduct: function(product) {
-            // 用where跟product.id來篩選
-            this.products.splice(this.products.indexOf(product), 1);
-            db.collection('products').where('id', '==', product.id).get().then((shotsnap) => {
-                shotsnap.forEach((doc) => {
-                    doc.ref.delete();
-                })
-            })
+            this.$store.dispatch('product/removeDataAction', product)
+            .then((data) => {  })
+            .catch((error) => console.log('removeProduct error:', error))
         },
         editProducts: function(products) {
-            // 1. 直接清光再全部set進去(自動ID會改變)
-            // initCollection(db, 'products', this.products);
-
-            // 2. 一個一個set(不會改動到原本的自動ID)
-            let batch = db.batch();
-            let index = 0;
-            db.collection('products').orderBy(this.sort).get().then((shotsnap) => {
-                shotsnap.forEach((doc) => {
-                    // console.log(doc.data().id, this.products[index].id)
-                    batch.set(doc.ref, this.products[index]);
-                    index++;
-                })
-                batch.commit()
-                .then(() => console.log('batch commit success(editProducts)'))
-                .catch(err => console.log('error', err));
-            })
+            // update all Data
+            for(let i in products) {
+                this.updateProduct(products[i]);
+            }
+            // update Data
+            this.$store.dispatch('getDataAction');
+        },
+        updateProduct: function(product) {
+            this.$store.dispatch('product/updateDataAction', product)
+            .then((data) => {  })
+            .catch((error) => console.log('updateProduct error:', error))
         },
         sortProducts: function(field) {
-            this.sort = field;
-            this.isAsc = !this.isAsc;
-            // 1.利用firebase重新取得排序後的資料
-            // if(this.isAsc)
-            //     db.collection('products').orderBy(field).get().then((shotsnap) => {
-            //         this.products = shotsnap.docs.map(doc => doc.data());
-            //     })
-            // else
-            //     db.collection('products').orderBy(field,'desc').get().then((shotsnap) => {
-            //         this.products = shotsnap.docs.map(doc => doc.data());
-            //     })
-
-            // 2.直接對this.products排序
-            let sort = this.sort;
-            let isAsc = this.isAsc;
-            this.products =  this.products.sort(function (a, b) {
-                if(isAsc)
-                    return a[sort] > b[sort] ? 1 : -1;
-                else
-                    return a[sort] < b[sort] ? 1 : -1;
-            });
+            this.$store.commit('product/sortData', field);
         },
         totalPage: function() {
             // ceil 無條件進位

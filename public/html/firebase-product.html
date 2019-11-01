@@ -9,7 +9,7 @@
     <button @click="addProduct(product)" class="btn btn-success">addProduct</button>
     
     <button @click="isEdit = !isEdit" class="btn btn-warning">Edit</button>
-    <button v-if="isEdit" @click="editProducts()" class="btn btn-primary">Save</button>
+    <button v-if="isEdit" @click="editProducts(products)" class="btn btn-primary">Save</button>
     <table v-if="!isEdit" id="prodcut-table" class="table">
         <thead>
             <tr>

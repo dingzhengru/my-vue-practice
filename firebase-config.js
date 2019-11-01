@@ -8,13 +8,21 @@ const firebaseConfig = {
   appId: "1:293558852778:web:e0b38cd9525f765ba6c4d3"
 };
 
-// var firebaseConfig = {
-//     apiKey: "AIzaSyB0Q2FtQgeXuF7HrNW6iee-VesFV03VuMM",
-//     authDomain: "vue-test-8c729.firebaseapp.com",
-//     databaseUrl: "https://vue-test-8c729.firebaseio.com",
-//     projectId: "vue-test-8c729",
-//     storageBucket: "vue-test-8c729.appspot.com",
-//     messagingSenderId: "1016646819297",
-//     appId: "vue-test-8c729",
-    
-// };
+// Auth
+// 登入設定檔(email&password)
+const actionCodeSettings = {
+    // URL you want to redirect back to. The domain (www.example.com) for this
+    // URL must be whitelisted in the Firebase Console.
+    url: 'http://localhost:8081',
+    // This must be true.
+    handleCodeInApp: true,
+    // iOS: {
+    //     bundleId: 'com.example.ios'
+    // },
+    // android: {
+    //     packageName: 'com.example.android',
+    //     installApp: true,
+    //     minimumVersion: '12'
+    // },
+    // dynamicLinkDomain: 'example.page.link'
+};

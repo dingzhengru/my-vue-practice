@@ -3,8 +3,11 @@ import { storeUser } from './store/store-user.js'
 
 const store = new Vuex.Store({
     modules: {
-        'fireProduct': firestoreProduct,
+        'product': firestoreProduct,
         'user': storeUser
     }
 })
-export { store }
+
+
+export default store
+// export {  store }
