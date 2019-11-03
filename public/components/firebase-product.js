@@ -2,11 +2,19 @@ var FirebaseProduct = {
     template: '' ,
     data: function() {
         return {
-            searchText: '',
+            search: {
+                text: '',
+                field: ''
+            },
+            pagination :{
+                currentPage: 1,
+                pageSize: 4
+            },
             isEdit: false,
             currentPage: 1,
-            pageSize: 3,
+            pageSize: 4,
             product: { name: '', price: null }, 
+            // searchText: '',
             // products: [],
             // sort: 'id',
             // isAsc: true,
@@ -26,22 +34,30 @@ var FirebaseProduct = {
         productsFilter: function () {
             // 從第幾個開始列 ex:假設一頁列出兩個(第一頁從第0個, 第二頁從第2個)
             // page return
-            let startAt = this.pageSize * (this.currentPage - 1);
-            let endAt = startAt + this.pageSize;
-            return this.searchProductsByAll(this.searchText).slice(startAt, endAt);
-            
+            // 如果是空的 就重新放置一次pagination
+            if(_.isEmpty(this.getFilterData())){
+                this.$store.commit('product/setPage', this.pagination);
+                return;
+            }
+            else
+                return this.getFilterData();
             // no page return
             // return this.searchProductsByAll(this.searchText);
         }
     },
     methods:{
-        searchProductsByAll: function(searchText) {
-            let products = this.$store.state.product.data || [];
-            return products.filter(function(p) {
-                for(let x in p) {
-                    if(String(p[x]).toLowerCase().includes(searchText.toLowerCase())) return p;
-                }
-            })
+        searchProductsByAll: function() {
+            return this.$store.getters['product/getSearchData'];
+        },
+        getFilterData: function() {
+            return this.$store.getters['product/getFilterData'];
+        },
+        sortProducts: function(field) {
+            // set new sort(change asc <=> desc)
+            let sort = this.$store.state.product.sort;
+            sort.orderByField = field;
+            sort.isAsc = !sort.isAsc;
+            this.$store.commit('product/setSort', sort);
         },
         addProduct: function(product) {
             this.$store.dispatch('product/addDataAction', product)
@@ -53,7 +69,7 @@ var FirebaseProduct = {
             .then((data) => {  })
             .catch((error) => console.log('removeProduct error:', error))
         },
-        editProducts: function(products) {
+        saveProducts: function(products) {
             // update all Data
             for(let i in products) {
                 this.updateProduct(products[i]);
@@ -66,15 +82,25 @@ var FirebaseProduct = {
             .then((data) => {  })
             .catch((error) => console.log('updateProduct error:', error))
         },
-        sortProducts: function(field) {
-            this.$store.commit('product/sortData', field);
-        },
         totalPage: function() {
             // ceil 無條件進位
-            return Math.ceil(this.searchProductsByAll(this.searchText).length / this.pageSize);
+            return Math.ceil(this.searchProductsByAll(this.searchText).length / this.pagination.pageSize);
         }
+    },
+    watch: {
+        'search.text': function(value, oldValue) {
+            this.$store.commit('product/setSearch', this.search);
+        }, 
+        'search.field': function(value, oldValue) {
+            this.$store.commit('product/setSearch', this.search);
+        },
+        'pagination.currentPage': function(value, oldValue) {
+            this.$store.commit('product/setPage', this.pagination);
+        },
+        'pagination.pageSize': function(value, oldValue) {
+            this.$store.commit('product/setPage', this.pagination);
+        },
     }
-
 };
 
 

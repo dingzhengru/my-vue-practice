@@ -7,11 +7,83 @@ const firestoreProduct = {
         sort: {
             orderByField: 'id',
             isAsc: true
+        },
+        search: {
+            text: '',
+            field: '',
+        },
+        pagination: {
+            currentPage: null,
+            pageSize: null
         }
     },
     getters: {
-        getProducts: (state) => {
-            return state.data;
+        getSortData: (state) => {
+            let data = state.data || [];
+            let field = state.sort.orderByField;
+            let isAsc = state.sort.isAsc;
+
+            return data.sort(function (a, b) {
+                if(isAsc)
+                    return a[field] > b[field] ? 1 : -1;
+                else
+                    return a[field] < b[field] ? 1 : -1;
+            });
+        },
+        getSearchData: (state) => {
+            let data = state.data || [];
+            let searchText = state.search.text;
+            let searchField = state.search.field;
+
+            if(_.isEmpty(searchField))
+                return data.filter(function(p) {
+                    for(let x in p) {
+                        if(String(p[x]).toLowerCase().includes(searchText.toLowerCase())) 
+                            return p;
+                    }
+                })
+            else {
+                return data.filter((p) => {
+                    if(String(p[searchField]).toLowerCase().includes(searchText.toLowerCase())) 
+                        return p;
+                })
+            }
+        },
+        getPageData(state) {
+            let currentPage = state.pagination.currentPage;
+            let pageSize = state.pagination.pageSize;
+            let startAt = pageSize * (currentPage - 1);
+            let endAt = startAt + pageSize;
+
+            let data = state.data || [];
+
+            return data.slice(startAt, endAt);
+        },
+        getFilterData(state, getters) {
+            // 取搜尋後再分割頁面的資料
+
+            // page
+            let currentPage = state.pagination.currentPage;
+            let pageSize = state.pagination.pageSize;
+            let startAt = pageSize * (currentPage - 1);
+            let endAt = startAt + pageSize;
+
+            // sort
+            let field = state.sort.orderByField;
+            let isAsc = state.sort.isAsc;
+
+            // search => page => sort
+            let data = getters
+                       .getSearchData
+                       .slice(startAt, endAt)
+                       .sort(function (a, b) {
+                            if(isAsc)
+                                return a[field] > b[field] ? 1 : -1;
+                            else
+                                return a[field] < b[field] ? 1 : -1;
+                        }) || [];
+
+            return data;
         }
     },
     mutations: {
@@ -25,19 +97,16 @@ const firestoreProduct = {
         setError(state, payload) {
             state.error = payload
         },
-        sortData(state, payload) {
-            let field = payload;
-            let isAsc = !state.sort.isAsc
-
-            state.sort.orderByField = field;
-            state.sort.isAsc = isAsc;
-
-            state.data = state.data.sort(function (a, b) {
-                if(isAsc)
-                    return a[field] > b[field] ? 1 : -1;
-                else
-                    return a[field] < b[field] ? 1 : -1;
-            });
+        setSort(state, payload) {
+            state.sort = payload;
+        },
+        setSearch(state, payload) {
+            console.log('setSearch', payload);
+            state.search = payload;
+        },
+        setPage(state, payload) {
+            console.log('setPage', payload);
+            state.pagination = payload;
         }
     },
     actions: {

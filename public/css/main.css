@@ -68,7 +68,12 @@ footer{
 }
 
 /* Page */
-.pagination-nav{}
+.pagination-nav{
+    padding-bottom: 10px;
+}
+.pagination-nav ul{
+
+}
 .pagination-nav a {
     cursor: pointer;
 }
