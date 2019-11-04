@@ -75,7 +75,7 @@ var FirebaseProduct = {
                 this.updateProduct(products[i]);
             }
             // update Data
-            this.$store.dispatch('getDataAction');
+            this.$store.dispatch('product/getDataAction');
         },
         updateProduct: function(product) {
             this.$store.dispatch('product/updateDataAction', product)

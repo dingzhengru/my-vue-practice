@@ -72,17 +72,27 @@ const firestoreProduct = {
             let field = state.sort.orderByField;
             let isAsc = state.sort.isAsc;
 
-            // search => page => sort
-            let data = getters
-                       .getSearchData
-                       .slice(startAt, endAt)
-                       .sort(function (a, b) {
-                            if(isAsc)
-                                return a[field] > b[field] ? 1 : -1;
-                            else
-                                return a[field] < b[field] ? 1 : -1;
-                        }) || [];
+            // sort => search => page
+            let data = getters.getSortData;
 
+            if(_.isEmpty(searchField)) {
+                data = data
+                       .filter(function(d) {
+                        for(let x in d) {
+                            if(String(d[x]).toLowerCase().includes(searchText.toLowerCase())) 
+                                return d;
+                            }
+                        })
+            }
+            else {
+                data = data
+                       .filter((d) => {
+                            if(String(d[searchField]).toLowerCase().includes(searchText.toLowerCase())) 
+                                return d;
+                        })
+            }
+
+            data = data.slice(startAt, endAt)
             return data;
         }
     },
