@@ -68,6 +68,10 @@ const firestoreProduct = {
             let startAt = pageSize * (currentPage - 1);
             let endAt = startAt + pageSize;
 
+            // search
+            let searchText = state.search.text;
+            let searchField = state.search.field;
+
             // sort
             let field = state.sort.orderByField;
             let isAsc = state.sort.isAsc;
