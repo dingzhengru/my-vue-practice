@@ -28,7 +28,7 @@
     "gulp-uglify": "^3.0.2",
     "gulp-uglifycss": "^1.1.0",
     "gulp-webserver": "^0.9.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jshint": "^2.10.2",
     "lodash": "^4.17.15",
     "pipeline": "^0.1.3",
